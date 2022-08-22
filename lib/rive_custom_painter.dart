@@ -52,11 +52,9 @@ class RiveCustomPainter extends LeafRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RiveCustomRenderObject()
-      ..artboard = artboard
+    return RiveCustomRenderObject(artboard as RuntimeArtboard)
       ..fit = fit
       ..alignment = alignment
-      ..useIntrinsicSize = useIntrinsicSize
       ..components = components;
   }
 
@@ -67,7 +65,6 @@ class RiveCustomPainter extends LeafRenderObjectWidget {
       ..artboard = artboard
       ..fit = fit
       ..alignment = alignment
-      ..useIntrinsicSize = useIntrinsicSize
       ..components = components;
   }
 
@@ -79,6 +76,8 @@ class RiveCustomPainter extends LeafRenderObjectWidget {
 
 class RiveCustomRenderObject extends RiveRenderObject {
   List<RivePaintContext> _components;
+
+  RiveCustomRenderObject(RuntimeArtboard artboard) : super(artboard);
   List<RivePaintContext> get components => _components;
   set components(List<RivePaintContext> value) {
     if (listEquals(_components, value)) {

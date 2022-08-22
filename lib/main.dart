@@ -39,12 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Matrix4 _transform = Matrix4.identity();
 
   Future<void> _load() async {
-    var data = await rootBundle.load('assets/distinctly_rive_animation.riv');
-    var file = RiveFile();
-    var success = file.import(data);
-    if (success) {
-      var artboard = file.mainArtboard;
-      artboard.addController(_controller = SimpleAnimation('Untitled 1'));
+    var data = await rootBundle.load('weatherweather.riv');
+    var file = RiveFile.import(data);
+    if (file != null) {
+      var artboard = file.artboardByName("Source");
+      artboard
+          .addController(_controller = SimpleAnimation('Complex ainmation 1'));
       setState(() => _riveArtboard = artboard);
     }
   }
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         // Provide a RivePaintContext for any object you want to
                         // track the transformation of.
                         RivePaintContext(
-                          componentName: 'ball',
+                          componentName: 'Cloud',
                           transformChanged: (matrix) {
                             // If you want the text to scale, rotate, and
                             // translate with the object, just set the matrix
@@ -123,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Transform(
                       transform: _transform,
                       child: const Text(
-                        'this is a ball',
+                        'Follow the bounce',
                         style: TextStyle(
                           fontSize: 40,
                           color: Color(0xFFFF4477),
